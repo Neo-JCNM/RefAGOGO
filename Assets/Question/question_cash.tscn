@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bdvb60csraplc"]
 
+[ext_resource type="Script" uid="uid://dq2dcsb35nglf" path="res://Assets/Scripts/gameController.gd" id="1_oxtyh"]
+
 [node name="QuestionCash" type="Control" unique_id=1865489518]
 layout_mode = 3
 anchors_preset = 15
@@ -9,6 +11,7 @@ offset_top = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_oxtyh")
 
 [node name="Question" type="VBoxContainer" parent="." unique_id=807682352]
 layout_mode = 0
@@ -18,7 +21,7 @@ offset_right = 663.0
 offset_bottom = 328.0
 alignment = 1
 
-[node name="Label" type="Label" parent="Question" unique_id=972936938]
+[node name="Text" type="Label" parent="Question" unique_id=972936938]
 layout_mode = 2
 
 [node name="Ref" type="Panel" parent="Question" unique_id=2016323793]
@@ -47,7 +50,7 @@ expand = true
 
 [node name="Audio" type="AudioStreamPlayer" parent="Question/Ref" unique_id=2034050956]
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=792398041]
+[node name="Options" type="GridContainer" parent="." unique_id=792398041]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -62,7 +65,7 @@ grow_horizontal = 2
 grow_vertical = 0
 columns = 2
 
-[node name="A" type="Button" parent="GridContainer" unique_id=1435659424]
+[node name="A" type="Button" parent="Options" unique_id=1435659424]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 11
@@ -70,7 +73,7 @@ autowrap_mode = 3
 icon_alignment = 1
 expand_icon = true
 
-[node name="B" type="Button" parent="GridContainer" unique_id=2005443898]
+[node name="B" type="Button" parent="Options" unique_id=2005443898]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 11
@@ -78,7 +81,7 @@ autowrap_mode = 3
 icon_alignment = 1
 expand_icon = true
 
-[node name="C" type="Button" parent="GridContainer" unique_id=400204120]
+[node name="C" type="Button" parent="Options" unique_id=400204120]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 11
@@ -86,7 +89,7 @@ autowrap_mode = 3
 icon_alignment = 1
 expand_icon = true
 
-[node name="D" type="Button" parent="GridContainer" unique_id=1738535088]
+[node name="D" type="Button" parent="Options" unique_id=1738535088]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 11

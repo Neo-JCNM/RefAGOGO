@@ -5,6 +5,7 @@ class_name RefsImg
 @export_group("Data")
 @export var src : Texture2D = null
 @export var ref : String = ""
+@export var options : Array[String] = []
 @export var tags : PackedStringArray = []
 @export var diff : int = 0
 

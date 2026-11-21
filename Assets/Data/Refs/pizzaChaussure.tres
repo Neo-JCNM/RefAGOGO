@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="RefsTxt" format=3 uid="uid://dx05yfyy2pxkn"]
 
-[ext_resource type="Script" uid="uid://bcfv77qqroy65" path="res://Assets/Scripts/ScriptableObjects/refsTxt.gd" id="1_ot4qd"]
+[ext_resource type="Script" uid="uid://bcfv77qqroy65" path="res://Assets/Scripts/ScriptableObjects/refsTxt.gd" id="1_r22gn"]
 
 [resource]
-script = ExtResource("1_ot4qd")
+script = ExtResource("1_r22gn")
 src = "Woaaaaah, ça fait comme des pizzas quatre chaussures"
 ref = "La Tour Montparnasse infernale"
+tags = ["Oscar", "Le Père Noël est une ordure", "La Tour Montparnasse infernale", "Dikkenek"]
 diff = 1
 metadata/_custom_type_script = "uid://bcfv77qqroy65"
