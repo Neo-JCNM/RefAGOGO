@@ -5,7 +5,7 @@ class_name RefsTxt
 @export_group("Data")
 @export var src : String = ""
 @export var ref : String = ""
-@export var tags : Array = []
+@export var tags : PackedStringArray = []
 @export var diff : int = 0
 
 

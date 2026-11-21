@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RefsAudio" format=3 uid="uid://do51dpo0dwnfa"]
+
+[ext_resource type="Script" uid="uid://dr2jh1opnxq4v" path="res://Assets/Scripts/ScriptableObjects/refsAudio.gd" id="1_xola1"]
+[ext_resource type="AudioStream" uid="uid://ccst43q68sf63" path="res://Assets/Ressources/Audio/sayMyName.mp3" id="2_ejqas"]
+
+[resource]
+script = ExtResource("1_xola1")
+src = ExtResource("2_ejqas")
+ref = "Breaking Bad"
+tags = ["Série", "Drama", "Action", "Culte"]
+diff = 1
+metadata/_custom_type_script = "uid://dr2jh1opnxq4v"

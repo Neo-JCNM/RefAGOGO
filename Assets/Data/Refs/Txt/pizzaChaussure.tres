@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RefsTxt" format=3 uid="uid://dx05yfyy2pxkn"]
+
+[ext_resource type="Script" uid="uid://bcfv77qqroy65" path="res://Assets/Scripts/ScriptableObjects/refsTxt.gd" id="1_ot4qd"]
+
+[resource]
+script = ExtResource("1_ot4qd")
+src = "Woaaaaah, ça fait comme des pizzas quatre chaussures"
+ref = "La Tour Montparnasse infernale"
+diff = 1
+metadata/_custom_type_script = "uid://bcfv77qqroy65"

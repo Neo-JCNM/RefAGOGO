@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RefsAudio" format=3 uid="uid://4xg1lhfvb0e1"]
+
+[ext_resource type="Script" uid="uid://dr2jh1opnxq4v" path="res://Assets/Scripts/ScriptableObjects/refsAudio.gd" id="1_skk16"]
+[ext_resource type="AudioStream" uid="uid://bv7xp3x8oe2ow" path="res://Assets/Ressources/Audio/vieRoi.mp3" id="2_fb7wk"]
+
+[resource]
+script = ExtResource("1_skk16")
+src = ExtResource("2_fb7wk")
+ref = "Le Roi Lion"
+tags = ["Film", "Animation", "Enfant", "Disney", "Culte"]
+metadata/_custom_type_script = "uid://dr2jh1opnxq4v"
