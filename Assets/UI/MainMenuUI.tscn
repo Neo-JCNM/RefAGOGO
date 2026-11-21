@@ -1,53 +1,114 @@
 [gd_scene format=3 uid="uid://bagwderepubm6"]
 
 [ext_resource type="Texture2D" uid="uid://cbdo1o07wo0b6" path="res://Assets/Graphics/UI Elements/BackgroundMenu.png" id="1_h2d3l"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_wpwwm"]
-font_size = 64
+[ext_resource type="Script" uid="uid://trn42rw6nuul" path="res://Assets/Scripts/UI/main_menu_ui.gd" id="1_slp48"]
+[ext_resource type="FontFile" uid="uid://dtygypbystsrb" path="res://Assets/Fonts/tendang/Tendang.otf" id="2_j6shw"]
+[ext_resource type="Script" uid="uid://38j3ik0m2egi" path="res://Assets/Scripts/UI/menuEntry.gd" id="3_slp48"]
+[ext_resource type="Texture2D" uid="uid://dij23odggghlb" path="res://Assets/Graphics/UI Elements/ButtonContainers.png" id="3_wif2a"]
+[ext_resource type="Texture2D" uid="uid://blgsn3wfvekm2" path="res://Assets/Graphics/UI Elements/Titre.png" id="6_6mcdm"]
 
 [node name="MainMenuUi" type="Control" unique_id=1047168094]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 21.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_slp48")
+metadata/_edit_horizontal_guides_ = [130.0]
 
 [node name="BackgroundMenu" type="Sprite2D" parent="." unique_id=686120330]
-position = Vector2(576.49994, 313.49997)
-scale = Vector2(0.60156244, 0.586111)
+position = Vector2(582.5, 321)
+scale = Vector2(0.6255209, 0.6166667)
 texture = ExtResource("1_h2d3l")
 
 [node name="Fond" type="TextureRect" parent="." unique_id=1302967708]
 layout_mode = 0
-offset_right = 1155.0
-offset_bottom = 648.0
+offset_right = 1168.0
+offset_bottom = 686.0
 flip_h = true
 
-[node name="Titre" type="Label" parent="." unique_id=2015781419]
-layout_mode = 0
-offset_left = 335.0
-offset_top = 83.0
-offset_right = 832.0
-offset_bottom = 255.0
-text = "Ref'A'GOGO!"
-label_settings = SubResource("LabelSettings_wpwwm")
-horizontal_alignment = 1
+[node name="Entries" type="Control" parent="." unique_id=1162551039]
+anchors_preset = 0
+offset_left = -104.0
+offset_right = -54.0
+offset_bottom = 42.0
+scale = Vector2(1.0000006, 1)
 
-[node name="StartBtn" type="Button" parent="." unique_id=1290734725]
+[node name="Start" type="Control" parent="Entries" unique_id=339473688]
+anchors_preset = 0
+offset_left = 74.999954
+offset_top = -7.0
+offset_right = 114.999954
+offset_bottom = 33.0
+
+[node name="ButtonContainers" type="Sprite2D" parent="Entries/Start" unique_id=1843196879]
+position = Vector2(798.9995, 334)
+scale = Vector2(0.57916677, 0.48842594)
+texture = ExtResource("3_wif2a")
+
+[node name="StartBtn" type="Button" parent="Entries/Start" unique_id=1290734725 node_paths=PackedStringArray("container")]
 layout_mode = 0
-offset_left = 518.0
+offset_left = 566.9997
 offset_top = 245.0
-offset_right = 658.0
-offset_bottom = 310.0
-theme_override_font_sizes/font_size = 32
-text = "Start"
+offset_right = 1301.9998
+offset_bottom = 381.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Quit/QuitBtn")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../Quit/QuitBtn")
+theme_override_colors/font_color = Color(0.7757227, 0.7817916, 0.7984163, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_j6shw")
+theme_override_font_sizes/font_size = 40
+text = "Tenter Ma Chance !"
+flat = true
+icon_alignment = 1
+script = ExtResource("3_slp48")
+focus_push_x = 50.0
+focus_scale = 1.1
+container = NodePath("../ButtonContainers")
 
-[node name="QuitBtn" type="Button" parent="." unique_id=152540280]
+[node name="Quit" type="Control" parent="Entries" unique_id=1431772170]
+anchors_preset = 0
+offset_left = 74.999954
+offset_top = -7.0
+offset_right = 114.999954
+offset_bottom = 33.0
+
+[node name="ButtonContainers2" type="Sprite2D" parent="Entries/Quit" unique_id=94800120]
+position = Vector2(748.9995, 492.00003)
+scale = Vector2(0.68333334, 0.53749996)
+texture = ExtResource("3_wif2a")
+
+[node name="QuitBtn" type="Button" parent="Entries/Quit" unique_id=152540280 node_paths=PackedStringArray("container")]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 368.0
-offset_right = 658.0
-offset_bottom = 433.0
-theme_override_font_sizes/font_size = 32
-text = "Quitter"
+offset_left = 519.9997
+offset_top = 399.0
+offset_right = 1254.9998
+offset_bottom = 535.0
+focus_neighbor_left = NodePath("../../Start/StartBtn")
+focus_neighbor_top = NodePath("../../Start/StartBtn")
+focus_neighbor_right = NodePath("../../Start/StartBtn")
+focus_neighbor_bottom = NodePath("../../Start/StartBtn")
+theme_override_colors/font_color = Color(0.7757227, 0.7817916, 0.7984163, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_j6shw")
+theme_override_font_sizes/font_size = 40
+text = "Abandonner... (Looser)"
+flat = true
+icon_alignment = 1
+script = ExtResource("3_slp48")
+focus_push_x = 50.0
+focus_scale = 1.1
+container = NodePath("../ButtonContainers2")
+
+[node name="Titre2" type="Sprite2D" parent="." unique_id=1024667067]
+position = Vector2(335, 116)
+texture = ExtResource("6_6mcdm")
+
+[connection signal="button_down" from="Entries/Start/StartBtn" to="." method="_on_start_btn_button_down"]
+[connection signal="button_down" from="Entries/Quit/QuitBtn" to="." method="_on_quit_btn_button_down"]
