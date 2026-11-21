@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bagwderepubm6"]
+
+[ext_resource type="Texture2D" uid="uid://cbdo1o07wo0b6" path="res://Assets/Graphics/UI Elements/BackgroundMenu.png" id="1_h2d3l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wpwwm"]
+font_size = 64
+
+[node name="MainMenuUi" type="Control" unique_id=1047168094]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundMenu" type="Sprite2D" parent="." unique_id=686120330]
+position = Vector2(576.49994, 313.49997)
+scale = Vector2(0.60156244, 0.586111)
+texture = ExtResource("1_h2d3l")
+
+[node name="Fond" type="TextureRect" parent="." unique_id=1302967708]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 648.0
+flip_h = true
+
+[node name="Titre" type="Label" parent="." unique_id=2015781419]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 83.0
+offset_right = 832.0
+offset_bottom = 255.0
+text = "Ref'A'GOGO!"
+label_settings = SubResource("LabelSettings_wpwwm")
+horizontal_alignment = 1
+
+[node name="StartBtn" type="Button" parent="." unique_id=1290734725]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 245.0
+offset_right = 658.0
+offset_bottom = 310.0
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="QuitBtn" type="Button" parent="." unique_id=152540280]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 368.0
+offset_right = 658.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 32
+text = "Quitter"
