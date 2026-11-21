@@ -25,12 +25,30 @@ signal endChoice
 @export var intro : AudioStreamMP3 = null
 @export var loop : AudioStreamMP3 = null
 
-var isChoosing = true
+@export_category("Scenes")
+@export var groupHolder : Control = null
+@export var imageHolder : TextureRect = null
+@export var videoHolder : VideoStreamPlayer = null
+@export var textHolder : Button = null
+@export var audioHolder : AudioStreamPlayer = null
 
+
+
+var refPool = []
+var historiqueRef = []
+var Question : RefSO 
 
 func _ready() -> void:
+	groupHolder.hide()
+	imageHolder.hide()
+	videoHolder.hide()
+	textHolder.hide()
+	
+	
 	gamestate = "PALIER"
 	changementDePhase.emit()
+	
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,7 +88,10 @@ func _on_changement_de_phase() -> void:
 			choiceButton3.text = choices[2]
 			
 		"PREPQUESTION":
-			#get_questions()
+			get_refs()
+		"QUIZ":
+			chooseQuestion()
+			mettreEnScene()
 			pass
 
 #region UI Boutton de choix
@@ -121,3 +142,31 @@ func _on_end_choice() -> void:
 	choiceButton3.hide()
 	gamestate = "PREPQUESTION"
 	changementDePhase.emit()
+
+func get_refs() -> void:
+	for fichier in DirAccess.open("res://Assets/Data/Refs/Finaux/").get_files():
+		var ref : RefSO = load("res://Assets/Data/Refs/Finaux/"+fichier)
+		if(ref not in historiqueRef && ((ref.tag1 == registeredChoices[-1]) || (ref.tag2 == registeredChoices[-1]))):
+			registeredChoices.append(ref)
+			refPool.append(ref)
+	gamestate = "QUIZ"
+	changementDePhase.emit()
+			
+func chooseQuestion()->void:
+	refPool.shuffle()
+	Question = refPool.pop_front()
+	
+func mettreEnScene()->void:
+	groupHolder.show()
+	if Question.isAudio : audioHolder.show()
+	elif Question.isTexte : 
+		textHolder.show()
+		textHolder.text = Question.texte
+	elif Question.isVideo : 
+		videoHolder.show()
+		videoHolder.stream = Question.video
+	elif Question.isImage : 
+		imageHolder.show()
+		imageHolder.texture = Question.image
+	
+	

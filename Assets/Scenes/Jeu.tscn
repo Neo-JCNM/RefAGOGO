@@ -4,10 +4,12 @@
 [ext_resource type="AudioStream" uid="uid://bgbcppjrtj4cg" path="res://Assets/Audio/SFX/Nope.wav" id="2_ohw0v"]
 [ext_resource type="AudioStream" uid="uid://2tegwjfl5n3m" path="res://Assets/Audio/SFX/Yes.wav" id="3_8sw6j"]
 [ext_resource type="AudioStream" uid="uid://b3ppidojndme6" path="res://Assets/Audio/SFX/Change choice.wav" id="4_sqw0n"]
+[ext_resource type="Texture2D" uid="uid://do3whi17noc6y" path="res://Assets/Graphics/UI Elements/rounded-black-square-shape.png" id="5_8sw6j"]
+[ext_resource type="FontFile" uid="uid://dtygypbystsrb" path="res://Assets/Fonts/tendang/Tendang.otf" id="6_sqw0n"]
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_0qnu3"]
 
-[node name="Jeu" type="Control" unique_id=597964419 node_paths=PackedStringArray("choiceButton1", "choiceButton2", "choiceButton3", "sfx", "bgm", "ymg")]
+[node name="Jeu" type="Control" unique_id=597964419 node_paths=PackedStringArray("choiceButton1", "choiceButton2", "choiceButton3", "sfx", "bgm", "ymg", "groupHolder", "imageHolder", "videoHolder", "textHolder", "audioHolder")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,37 +26,48 @@ ymg = NodePath("YMG")
 nope = ExtResource("2_ohw0v")
 yes = ExtResource("3_8sw6j")
 change = ExtResource("4_sqw0n")
+groupHolder = NodePath("Control")
+imageHolder = NodePath("Control/Sprite2D")
+videoHolder = NodePath("Control/VideoStreamPlayer")
+textHolder = NodePath("Control/Text Holder")
+audioHolder = NodePath("YMG")
 
 [node name="Button1" type="Button" parent="." unique_id=1340554337]
 layout_mode = 0
-offset_left = 204.0
-offset_top = 382.0
-offset_right = 364.0
-offset_bottom = 445.0
+offset_left = 163.0
+offset_top = 380.0
+offset_right = 331.0
+offset_bottom = 444.0
+scale = Vector2(1.3199999, 1)
 focus_neighbor_left = NodePath("../Button3")
 focus_neighbor_right = NodePath("../Button2")
+theme_override_fonts/font = ExtResource("6_sqw0n")
 theme_override_font_sizes/font_size = 40
 text = "Choice1"
 
 [node name="Button2" type="Button" parent="." unique_id=2146800256]
 layout_mode = 0
-offset_left = 494.0
-offset_top = 382.0
-offset_right = 654.0
-offset_bottom = 445.0
+offset_left = 453.0
+offset_top = 380.0
+offset_right = 630.0
+offset_bottom = 444.0
+scale = Vector2(1.3199999, 1)
 focus_neighbor_left = NodePath("../Button1")
 focus_neighbor_right = NodePath("../Button3")
+theme_override_fonts/font = ExtResource("6_sqw0n")
 theme_override_font_sizes/font_size = 40
 text = "Choice2"
 
 [node name="Button3" type="Button" parent="." unique_id=1762372337]
 layout_mode = 0
-offset_left = 807.0
-offset_top = 382.0
-offset_right = 967.0
-offset_bottom = 445.0
+offset_left = 766.0
+offset_top = 380.0
+offset_right = 943.0
+offset_bottom = 444.0
+scale = Vector2(1.3199999, 1)
 focus_neighbor_left = NodePath("../Button2")
 focus_neighbor_right = NodePath(".")
+theme_override_fonts/font = ExtResource("6_sqw0n")
 theme_override_font_sizes/font_size = 40
 text = "Choice3"
 
@@ -67,6 +80,64 @@ stream = SubResource("AudioStreamMP3_0qnu3")
 autoplay = true
 max_polyphony = 2
 parameters/looping = false
+
+[node name="Control" type="Control" parent="." unique_id=969578218]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="TextureRect" parent="Control" unique_id=837293128]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 45.0
+offset_right = 561.0
+offset_bottom = 557.0
+scale = Vector2(1.4644797, 0.83612466)
+texture = ExtResource("5_8sw6j")
+expand_mode = 1
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control" unique_id=1646146937]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 40.0
+offset_right = 655.0
+offset_bottom = 472.0
+scale = Vector2(1.2406573, 1)
+
+[node name="Text Holder" type="Button" parent="Control" unique_id=1543617570]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 43.0
+offset_right = 659.0
+offset_bottom = 471.0
+scale = Vector2(1.2406573, 1)
+theme_override_font_sizes/font_size = 40
+disabled = true
+button_mask = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+autowrap_mode = 3
+
+[node name="Sprite2D2" type="TextureRect" parent="." unique_id=583890584]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 515.0
+offset_right = 567.0
+offset_bottom = 614.2675
+scale = Vector2(1.4644797, 0.83612466)
+texture = ExtResource("5_8sw6j")
+expand_mode = 1
+
+[node name="LineEdit" type="LineEdit" parent="Sprite2D2" unique_id=961127573]
+layout_mode = 0
+offset_left = 11.608217
+offset_top = 22.723877
+offset_right = 188.60822
+offset_bottom = 82.52356
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Insérez votre réponse"
+max_length = 36
+expand_to_text_length = true
 
 [connection signal="changementDePhase" from="." to="." method="_on_changement_de_phase"]
 [connection signal="endChoice" from="." to="." method="_on_end_choice"]
