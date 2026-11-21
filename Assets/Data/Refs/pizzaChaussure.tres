@@ -6,6 +6,7 @@
 script = ExtResource("1_r22gn")
 src = "Woaaaaah, ça fait comme des pizzas quatre chaussures"
 ref = "La Tour Montparnasse infernale"
-tags = ["Oscar", "Le Père Noël est une ordure", "La Tour Montparnasse infernale", "Dikkenek"]
+options = Array[String](["Pomme", "La Tour Montparnasse infernale", "Le Petit Prince", "Cacahuète"])
+tags = ["Français", "Culte"]
 diff = 1
 metadata/_custom_type_script = "uid://bcfv77qqroy65"

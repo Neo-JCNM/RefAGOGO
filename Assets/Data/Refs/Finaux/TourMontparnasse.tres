@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://bsavk1cr6e12v"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_k7dob"]
+
+[resource]
+script = ExtResource("1_k7dob")
+isTexte = true
+texte = "Woaaaaah, ça fait comme des pizzas quatre chaussures"
+ref = "La Tour Montparnasse Infernale"
+tag1 = "Français"
+tag2 = "Culte"
+metadata/_custom_type_script = "uid://u51bq241skvb"
