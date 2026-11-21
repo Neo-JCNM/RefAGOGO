@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://bagwderepubm6"]
 
-[ext_resource type="Texture2D" uid="uid://cbdo1o07wo0b6" path="res://Assets/Graphics/UI Elements/BackgroundMenu.png" id="1_h2d3l"]
-[ext_resource type="Script" uid="uid://trn42rw6nuul" path="res://Assets/Scripts/UI/main_menu_ui.gd" id="1_slp48"]
-[ext_resource type="FontFile" uid="uid://dtygypbystsrb" path="res://Assets/Fonts/tendang/Tendang.otf" id="2_j6shw"]
-[ext_resource type="Script" uid="uid://38j3ik0m2egi" path="res://Assets/Scripts/UI/menuEntry.gd" id="3_slp48"]
-[ext_resource type="Texture2D" uid="uid://dij23odggghlb" path="res://Assets/Graphics/UI Elements/ButtonContainers.png" id="3_wif2a"]
-[ext_resource type="Texture2D" uid="uid://blgsn3wfvekm2" path="res://Assets/Graphics/UI Elements/Titre.png" id="6_6mcdm"]
+[ext_resource type="Script" uid="uid://trn42rw6nuul" path="res://Assets/Scripts/UI/main_menu_ui.gd" id="1_cwbci"]
+[ext_resource type="Texture2D" uid="uid://cbdo1o07wo0b6" path="res://Assets/Graphics/UI Elements/BackgroundMenu.png" id="2_47kk4"]
+[ext_resource type="AudioStream" uid="uid://bgbcppjrtj4cg" path="res://Assets/Audio/SFX/Nope.wav" id="2_eqyh1"]
+[ext_resource type="AudioStream" uid="uid://2tegwjfl5n3m" path="res://Assets/Audio/SFX/Yes.wav" id="3_ho3wo"]
+[ext_resource type="Texture2D" uid="uid://dij23odggghlb" path="res://Assets/Graphics/UI Elements/ButtonContainers.png" id="3_o1tui"]
+[ext_resource type="AudioStream" uid="uid://b3ppidojndme6" path="res://Assets/Audio/SFX/Change choice.wav" id="4_i2ox8"]
+[ext_resource type="FontFile" uid="uid://dtygypbystsrb" path="res://Assets/Fonts/tendang/Tendang.otf" id="4_q5p6k"]
+[ext_resource type="Script" uid="uid://38j3ik0m2egi" path="res://Assets/Scripts/UI/menuEntry.gd" id="5_eqyh1"]
+[ext_resource type="AudioStream" uid="uid://dobgg5ppae4dj" path="res://Assets/Audio/BGM/Intro_1.mp3" id="5_i2ox8"]
+[ext_resource type="AudioStream" uid="uid://ck87qf8wlqy31" path="res://Assets/Audio/BGM/Intro.mp3" id="6_d6kuf"]
+[ext_resource type="Texture2D" uid="uid://blgsn3wfvekm2" path="res://Assets/Graphics/UI Elements/Titre.png" id="6_ho3wo"]
+[ext_resource type="PackedScene" uid="uid://bii0uopmg6e1i" path="res://Assets/Prefab/YMG Parlant.tscn" id="7_47kk4"]
 
-[node name="MainMenuUi" type="Control" unique_id=1047168094]
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_i2ox8"]
+
+[node name="MainMenu" type="Control" unique_id=1047168094 node_paths=PackedStringArray("sfx", "bgm")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,13 +24,20 @@ offset_right = 21.0
 offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_slp48")
+script = ExtResource("1_cwbci")
+sfx = NodePath("SFX")
+bgm = NodePath("BGM")
+nope = ExtResource("2_eqyh1")
+yes = ExtResource("3_ho3wo")
+change = ExtResource("4_i2ox8")
+intro = ExtResource("5_i2ox8")
+loop = ExtResource("6_d6kuf")
 metadata/_edit_horizontal_guides_ = [130.0]
 
 [node name="BackgroundMenu" type="Sprite2D" parent="." unique_id=686120330]
 position = Vector2(582.5, 321)
 scale = Vector2(0.6255209, 0.6166667)
-texture = ExtResource("1_h2d3l")
+texture = ExtResource("2_47kk4")
 
 [node name="Fond" type="TextureRect" parent="." unique_id=1302967708]
 layout_mode = 0
@@ -47,7 +62,7 @@ offset_bottom = 33.0
 [node name="ButtonContainers" type="Sprite2D" parent="Entries/Start" unique_id=1843196879]
 position = Vector2(798.9995, 334)
 scale = Vector2(0.57916677, 0.48842594)
-texture = ExtResource("3_wif2a")
+texture = ExtResource("3_o1tui")
 
 [node name="StartBtn" type="Button" parent="Entries/Start" unique_id=1290734725 node_paths=PackedStringArray("container")]
 layout_mode = 0
@@ -61,12 +76,12 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../Quit/QuitBtn")
 theme_override_colors/font_color = Color(0.7757227, 0.7817916, 0.7984163, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_j6shw")
+theme_override_fonts/font = ExtResource("4_q5p6k")
 theme_override_font_sizes/font_size = 40
 text = "Tenter Ma Chance !"
 flat = true
 icon_alignment = 1
-script = ExtResource("3_slp48")
+script = ExtResource("5_eqyh1")
 focus_push_x = 50.0
 focus_scale = 1.1
 container = NodePath("../ButtonContainers")
@@ -81,7 +96,7 @@ offset_bottom = 33.0
 [node name="ButtonContainers2" type="Sprite2D" parent="Entries/Quit" unique_id=94800120]
 position = Vector2(748.9995, 492.00003)
 scale = Vector2(0.68333334, 0.53749996)
-texture = ExtResource("3_wif2a")
+texture = ExtResource("3_o1tui")
 
 [node name="QuitBtn" type="Button" parent="Entries/Quit" unique_id=152540280 node_paths=PackedStringArray("container")]
 layout_mode = 0
@@ -96,19 +111,35 @@ focus_neighbor_bottom = NodePath("../../Start/StartBtn")
 theme_override_colors/font_color = Color(0.7757227, 0.7817916, 0.7984163, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_j6shw")
+theme_override_fonts/font = ExtResource("4_q5p6k")
 theme_override_font_sizes/font_size = 40
 text = "Abandonner... (Looser)"
 flat = true
 icon_alignment = 1
-script = ExtResource("3_slp48")
+script = ExtResource("5_eqyh1")
 focus_push_x = 50.0
 focus_scale = 1.1
 container = NodePath("../ButtonContainers2")
 
 [node name="Titre" type="Sprite2D" parent="." unique_id=1024667067]
 position = Vector2(335, 116)
-texture = ExtResource("6_6mcdm")
+texture = ExtResource("6_ho3wo")
+
+[node name="YmgParlant" parent="." unique_id=2026341451 instance=ExtResource("7_47kk4")]
+position = Vector2(112, 475.99997)
+scale = Vector2(0.7, 0.7)
+
+[node name="YMG" type="AudioStreamPlayer" parent="." unique_id=1860314547]
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1437656030]
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=701550228]
+stream = SubResource("AudioStreamMP3_i2ox8")
+autoplay = true
+max_polyphony = 2
+parameters/looping = false
 
 [connection signal="button_down" from="Entries/Start/StartBtn" to="." method="_on_start_btn_button_down"]
+[connection signal="focus_entered" from="Entries/Start/StartBtn" to="." method="_on_start_btn_focus_entered"]
 [connection signal="button_down" from="Entries/Quit/QuitBtn" to="." method="_on_quit_btn_button_down"]
+[connection signal="focus_entered" from="Entries/Quit/QuitBtn" to="." method="_on_quit_btn_focus_entered"]
