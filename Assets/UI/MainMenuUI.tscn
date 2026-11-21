@@ -106,7 +106,7 @@ focus_push_x = 50.0
 focus_scale = 1.1
 container = NodePath("../ButtonContainers2")
 
-[node name="Titre2" type="Sprite2D" parent="." unique_id=1024667067]
+[node name="Titre" type="Sprite2D" parent="." unique_id=1024667067]
 position = Vector2(335, 116)
 texture = ExtResource("6_6mcdm")
 
