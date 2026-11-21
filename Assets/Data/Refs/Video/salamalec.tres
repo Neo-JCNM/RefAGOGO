@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RefsVideo" format=3 uid="uid://c58nipg8etoaf"]
+
+[ext_resource type="Script" uid="uid://byyw2kkac5a4g" path="res://Assets/Scripts/ScriptableObjects/refsVideo.gd" id="1_1rijp"]
+
+[resource]
+script = ExtResource("1_1rijp")
+src = "res://Assets/Ressources/Video/salamalec.ogv"
+ref = "Pulp fiction"
+diff = 2
+metadata/_custom_type_script = "uid://byyw2kkac5a4g"
