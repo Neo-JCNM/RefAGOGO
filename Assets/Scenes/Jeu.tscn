@@ -2,14 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dic5tugtegeji" path="res://Assets/Scenes/GameManager.gd" id="1_kbq3s"]
 [ext_resource type="AudioStream" uid="uid://bgbcppjrtj4cg" path="res://Assets/Audio/SFX/Nope.wav" id="2_ohw0v"]
+[ext_resource type="Texture2D" uid="uid://cbdo1o07wo0b6" path="res://Assets/Graphics/UI Elements/BackgroundMenu.png" id="2_u6fw8"]
 [ext_resource type="AudioStream" uid="uid://2tegwjfl5n3m" path="res://Assets/Audio/SFX/Yes.wav" id="3_8sw6j"]
 [ext_resource type="AudioStream" uid="uid://b3ppidojndme6" path="res://Assets/Audio/SFX/Change choice.wav" id="4_sqw0n"]
 [ext_resource type="Texture2D" uid="uid://do3whi17noc6y" path="res://Assets/Graphics/UI Elements/rounded-black-square-shape.png" id="5_8sw6j"]
 [ext_resource type="FontFile" uid="uid://dtygypbystsrb" path="res://Assets/Fonts/tendang/Tendang.otf" id="6_sqw0n"]
+[ext_resource type="Texture2D" uid="uid://e4daaduecb3r" path="res://icon.svg" id="7_0qnu3"]
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_0qnu3"]
 
-[node name="Jeu" type="Control" unique_id=597964419 node_paths=PackedStringArray("choiceButton1", "choiceButton2", "choiceButton3", "sfx", "bgm", "ymg", "groupHolder", "imageHolder", "videoHolder", "textHolder", "audioHolder")]
+[node name="Jeu" type="Control" unique_id=597964419 node_paths=PackedStringArray("bgContainer", "choiceButton1", "choiceButton2", "choiceButton3", "sfx", "bgm", "ymg", "groupHolder", "imageHolder", "videoHolder", "textHolder", "audioHolder", "textBar", "moneyDisplayer", "boutique")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +19,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kbq3s")
+shopBg = ExtResource("2_u6fw8")
+bgContainer = NodePath("")
 choiceButton1 = NodePath("Button1")
 choiceButton2 = NodePath("Button2")
 choiceButton3 = NodePath("Button3")
@@ -31,6 +35,14 @@ imageHolder = NodePath("Control/Sprite2D")
 videoHolder = NodePath("Control/VideoStreamPlayer")
 textHolder = NodePath("Control/Text Holder")
 audioHolder = NodePath("YMG")
+textBar = NodePath("Control/Sprite2D2/LineEdit")
+moneyDisplayer = NodePath("Money")
+boutique = NodePath("Shop")
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=1188814431]
+position = Vector2(581, 336.5)
+scale = Vector2(0.6041667, 0.6175926)
+texture = ExtResource("2_u6fw8")
 
 [node name="Button1" type="Button" parent="." unique_id=1340554337]
 layout_mode = 0
@@ -118,7 +130,7 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 autowrap_mode = 3
 
-[node name="Sprite2D2" type="TextureRect" parent="." unique_id=583890584]
+[node name="Sprite2D2" type="TextureRect" parent="Control" unique_id=583890584]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 515.0
@@ -128,7 +140,7 @@ scale = Vector2(1.4644797, 0.83612466)
 texture = ExtResource("5_8sw6j")
 expand_mode = 1
 
-[node name="LineEdit" type="LineEdit" parent="Sprite2D2" unique_id=961127573]
+[node name="LineEdit" type="LineEdit" parent="Control/Sprite2D2" unique_id=961127573]
 layout_mode = 0
 offset_left = 11.608217
 offset_top = 22.723877
@@ -139,8 +151,65 @@ placeholder_text = "Insérez votre réponse"
 max_length = 36
 expand_to_text_length = true
 
+[node name="Money" type="RichTextLabel" parent="." unique_id=1344309909]
+layout_mode = 0
+offset_left = 931.0
+offset_top = 39.0
+offset_right = 1115.0
+offset_bottom = 79.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/normal_font = ExtResource("6_sqw0n")
+theme_override_font_sizes/normal_font_size = 32
+text = "[Money] $"
+scroll_active = false
+autowrap_trim_flags = 0
+
+[node name="Shop" type="Control" parent="." unique_id=751348605]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 60.0
+offset_right = 181.0
+offset_bottom = 100.0
+
+[node name="Vie" type="Button" parent="Shop" unique_id=703529507]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 62.0
+offset_right = 285.0
+offset_bottom = 198.0
+theme_override_fonts/font = ExtResource("6_sqw0n")
+theme_override_font_sizes/font_size = 50
+text = "10 $"
+icon = ExtResource("7_0qnu3")
+flat = true
+
+[node name="Roue" type="Button" parent="Shop" unique_id=77229677]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 225.0
+offset_right = 481.0
+offset_bottom = 361.0
+theme_override_fonts/font = ExtResource("6_sqw0n")
+theme_override_font_sizes/font_size = 50
+text = "15 $"
+icon = ExtResource("7_0qnu3")
+flat = true
+
+[node name="Skip" type="Button" parent="Shop" unique_id=1652848387]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 379.0
+offset_right = 664.0
+offset_bottom = 515.0
+theme_override_fonts/font = ExtResource("6_sqw0n")
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("7_0qnu3")
+flat = true
+
 [connection signal="changementDePhase" from="." to="." method="_on_changement_de_phase"]
 [connection signal="endChoice" from="." to="." method="_on_end_choice"]
+[connection signal="gameOver" from="." to="." method="_on_game_over"]
 [connection signal="focus_entered" from="Button1" to="." method="_on_button_1_focus_entered"]
 [connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
 [connection signal="focus_entered" from="Button2" to="." method="_on_button_2_focus_entered"]
