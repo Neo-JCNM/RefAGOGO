@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://bdlyc4flrqisl"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_paefh"]
+[ext_resource type="VideoStream" uid="uid://dup3kp4mjwwrn" path="res://Assets/Ressources/Video/Narnia.ogv" id="2_paefh"]
+
+[resource]
+script = ExtResource("1_paefh")
+isVideo = true
+video = ExtResource("2_paefh")
+ref = "Narnia"
+tag1 = "Fantasy"
+tag2 = "Aventure"
+diff = 2
+metadata/_custom_type_script = "uid://u51bq241skvb"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://b6fnvlgtwjo4i"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_in1dn"]
+[ext_resource type="VideoStream" uid="uid://djmb636kihouw" path="res://Assets/Ressources/Video/Old Boy.ogv" id="2_in1dn"]
+
+[resource]
+script = ExtResource("1_in1dn")
+isVideo = true
+video = ExtResource("2_in1dn")
+ref = "Old Boy"
+tag1 = "Action"
+tag2 = "Mondial"
+diff = 4
+metadata/_custom_type_script = "uid://u51bq241skvb"

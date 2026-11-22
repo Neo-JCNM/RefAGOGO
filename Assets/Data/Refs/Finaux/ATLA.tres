@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://b2epr57ho1gor"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_x4oye"]
+[ext_resource type="VideoStream" uid="uid://ff2yhjvwbick" path="res://Assets/Ressources/Video/ATLA.ogv" id="2_x4oye"]
+
+[resource]
+script = ExtResource("1_x4oye")
+isVideo = true
+video = ExtResource("2_x4oye")
+ref = "Avatar"
+tag1 = "Animation"
+tag2 = "Aventure"
+diff = 1
+metadata/_custom_type_script = "uid://u51bq241skvb"

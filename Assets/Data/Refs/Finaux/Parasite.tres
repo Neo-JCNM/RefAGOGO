@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://bru0umkfxavo4"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_0mh5v"]
+[ext_resource type="VideoStream" uid="uid://c8c75cqwl3lh1" path="res://Assets/Ressources/Video/Parasite.ogv" id="2_0mh5v"]
+
+[resource]
+script = ExtResource("1_0mh5v")
+isVideo = true
+video = ExtResource("2_0mh5v")
+ref = "Parasite"
+tag1 = "Drame"
+tag2 = "Mondial"
+diff = 5
+metadata/_custom_type_script = "uid://u51bq241skvb"

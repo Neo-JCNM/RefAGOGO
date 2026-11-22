@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://rd7vt1upp4em"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_sm2nx"]
+[ext_resource type="VideoStream" uid="uid://6m5auk2ai5jo" path="res://Assets/Ressources/Video/Transformers.ogv" id="2_sm2nx"]
+
+[resource]
+script = ExtResource("1_sm2nx")
+isVideo = true
+video = ExtResource("2_sm2nx")
+ref = "Transformers"
+tag1 = "Action"
+tag2 = "Sci-Fi"
+diff = 1
+metadata/_custom_type_script = "uid://u51bq241skvb"

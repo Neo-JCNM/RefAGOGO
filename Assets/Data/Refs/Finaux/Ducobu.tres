@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://b8u746qq6h1v5"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_bvkvc"]
+[ext_resource type="VideoStream" uid="uid://kpainrw2lu0u" path="res://Assets/Ressources/Video/Ducobu.ogv" id="2_bvkvc"]
+
+[resource]
+script = ExtResource("1_bvkvc")
+isVideo = true
+video = ExtResource("2_bvkvc")
+ref = "Ducobu"
+tag1 = "Français"
+tag2 = "Comédie"
+diff = 2
+metadata/_custom_type_script = "uid://u51bq241skvb"
