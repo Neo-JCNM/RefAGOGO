@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://tu3nmxsl5x7u"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_c2uep"]
+[ext_resource type="VideoStream" uid="uid://dedfkm202c3tl" path="res://Assets/Ressources/Video/ScaryMovie.ogv" id="2_c2uep"]
+
+[resource]
+script = ExtResource("1_c2uep")
+isVideo = true
+video = ExtResource("2_c2uep")
+ref = "Scary Movie"
+tag1 = "Horreur"
+tag2 = "Comédie"
+diff = 2
+metadata/_custom_type_script = "uid://u51bq241skvb"

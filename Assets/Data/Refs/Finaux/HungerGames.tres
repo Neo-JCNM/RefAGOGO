@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://c31gx1pord84r"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_saa3k"]
+[ext_resource type="VideoStream" uid="uid://d0eum65qme7i5" path="res://Assets/Ressources/Video/HungerGames.ogv" id="2_saa3k"]
+
+[resource]
+script = ExtResource("1_saa3k")
+isVideo = true
+video = ExtResource("2_saa3k")
+ref = "Hunger Games"
+tag1 = "Action"
+tag2 = "Aventure"
+diff = 1
+metadata/_custom_type_script = "uid://u51bq241skvb"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://1vpym2lamutk"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_fk7jy"]
+[ext_resource type="VideoStream" uid="uid://xgxa6u1b4oh2" path="res://Assets/Ressources/Video/LePereNoelEstUneOrdure.ogv" id="2_fk7jy"]
+
+[resource]
+script = ExtResource("1_fk7jy")
+isVideo = true
+video = ExtResource("2_fk7jy")
+ref = "Le Père Noël est une ordure"
+tag1 = "Comédie"
+tag2 = "Français"
+diff = 2
+metadata/_custom_type_script = "uid://u51bq241skvb"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://bumsulu4xmkqx"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_5c67c"]
+[ext_resource type="VideoStream" uid="uid://bfnrmob2f4h2" path="res://Assets/Ressources/Video/salamalec.ogv" id="2_5c67c"]
+
+[resource]
+script = ExtResource("1_5c67c")
+isVideo = true
+video = ExtResource("2_5c67c")
+ref = "PulpFiction"
+tag1 = "Amércain"
+tag2 = "Thriller"
+diff = 4
+metadata/_custom_type_script = "uid://u51bq241skvb"
