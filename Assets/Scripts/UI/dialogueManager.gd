@@ -2,6 +2,7 @@ extends Node
 
 
 @onready var textBoxScene = preload("res://Assets/Scenes/text_box.tscn")
+@onready var anim = $Sprite
 
 var dialogLines : Array[String] = []
 var currentLineIndex = 0
@@ -13,6 +14,11 @@ var isDialogActive = false
 var canAdvanceLine = false
 
 func startDialog(position : Vector2, lines: Array[String]):
+	anim.play("Talking_2")
+	while anim.autoplay:
+		if anim.frame == 0:
+			anim.stop()
+			break
 	if isDialogActive:
 		return
 	
@@ -38,11 +44,11 @@ func _onTextBodyFinishedDisplaying():
 
 func _unhandled_input(event):
 	if (
-		event.is_action_pressed("advance_dialog") &&
 		isDialogActive &&
 		canAdvanceLine
 	):
 		textBox.queue_free()
+		anim.play("Talking_1")
 		
 		currentLineIndex += 1
 		if currentLineIndex >= dialogLines.size():

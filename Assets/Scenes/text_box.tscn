@@ -7,13 +7,13 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = 9.0
-offset_right = 7.0
-offset_bottom = 9.0
+offset_left = -1.4520262
+offset_top = 0.40086365
+offset_right = -607.1825
+offset_bottom = -467.9496
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.79264903, 0.6178696)
+scale = Vector2(6.0031805, 1.24954)
 script = ExtResource("1_d0rgj")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=186037668]
@@ -30,6 +30,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer" unique_id=793046089]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
 vertical_alignment = 1
 
 [node name="letterDisplayTimer" type="Timer" parent="." unique_id=2100559834]

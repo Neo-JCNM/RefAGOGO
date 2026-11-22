@@ -17,8 +17,17 @@ signal finishedDisplaying()
 
 
 func displayText(textToDisplay: String):
+	if not is_node_ready():
+		await ready
+	if label == null:
+		push_error("Label introuvable : vérifie le chemin $MarginContainer/Label")
+		return
+	
 	text = textToDisplay
 	label.text = textToDisplay
+	if text.is_empty():
+		finishedDisplaying.emit()
+		return
 	
 	await resized
 	custom_minimum_size.x = min(size.x, MAX_WIDTH)

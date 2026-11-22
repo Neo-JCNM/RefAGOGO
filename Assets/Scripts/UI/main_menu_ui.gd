@@ -1,6 +1,7 @@
 extends Control
 
 @export var next = preload("res://Assets/Scenes/ModeSelection.tscn");
+@onready var presentateur = $YmgParlant
 
 @export var sfx : AudioStreamPlayer = null
 @export var bgm : AudioStreamPlayer = null
@@ -15,13 +16,21 @@ extends Control
 @export var loop : AudioStreamMP3 = null
 
 
-
+var debut : Array[String] = [
+	"Bonjour et bienvenue dans Refs À Gogo,",
+	"le plus grand jeu de l'année !",
+	"Une suite de questions infernales, pour",
+	"tester votre culture générale !"
+]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	bgm.set_stream(intro)
 	bgm.play()
+	
+	presentateur.startDialog(presentateur.position, debut)
+	print("fin dialogue !\n")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
