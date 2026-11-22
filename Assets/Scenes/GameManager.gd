@@ -1,11 +1,12 @@
 extends Control
 
-enum State { PALIER, PREP_QUESTION, QUIZ, CLEAR, VICTORY, GAME_OVER }
+enum State { SHOP, PALIER, PREP_QUESTION, QUIZ, VICTORY, GAME_OVER }
 
 signal changementDePhase(nouvel_etat: State)
 signal endChoice
 signal gameOver
 signal victory
+signal roueResultat(objet: String)
 
 const GAME_OVER_SCENE: PackedScene = preload("res://Assets/Scenes/GameOver.tscn")
 const REFS_PATH: String = "res://Assets/Data/Refs/Finaux/"
@@ -13,6 +14,7 @@ const QUESTIONS_PAR_PALIER: int = 4
 const MAX_PALIER: int = 5
 const MIN_DIFF: int = 0
 const MAX_DIFF: int = 5
+const COUT_ROUE: int = 15
 
 const DIFF_WEIGHTS_BY_PALIER: Dictionary = {
 	1: [35.0, 35.0, 20.0, 7.0, 2.0, 1.0],
@@ -22,7 +24,7 @@ const DIFF_WEIGHTS_BY_PALIER: Dictionary = {
 	5: [2.0, 5.0, 13.0, 28.0, 30.0, 22.0]
 }
 
-@export var tagList: Array[String] = ["Français", "Comédie", "Horreur", "Action", "Américain", "Fantasy", "Drame", "Thriller", "Sci-Fi"]
+@export var tagList: Array[String] = ["Français","Aventure","Animation","Musical","Mondial", "Comédie", "Horreur", "Action", "Américain", "Fantasy", "Drame", "Thriller", "Sci-Fi"]
 @export var victoryScene: PackedScene = null
 
 @export var shopBg: Texture2D = null
@@ -60,8 +62,7 @@ const DIFF_WEIGHTS_BY_PALIER: Dictionary = {
 @onready var presentateur = $YmgParlant
 @onready var pos = $YmgParlant/BulleReponse
 
-#region dialogues
-var victoires : Array = [
+var victoires: Array = [
 	["Bien joué, même si un nouveau-né l'aurait eu aussi !"],
 	["Bravo, tu es aussi fort que monsieur-tout-le-monde !"],
 	["Pas mal, tu es plus cultivé que tu en as l'air !"],
@@ -78,9 +79,8 @@ var defaites: Array = [
 	["J'en attendais un peu mieux de toi"],
 	["Logique, tu ne fais pas partie de l'élite..."]
 ]
-#endregion
 
-var gamestate: State = State.PALIER
+var gamestate: State = State.SHOP
 var activeTags: Array[String] = []
 var choices: Array[String] = []
 
@@ -89,6 +89,8 @@ var Etape: int = 0
 var Palier: int = 1
 var Money: int = 0
 var performanceScore: float = 0.0
+var questionsRequisesPalier: int = QUESTIONS_PAR_PALIER
+var reductionQuestionsProchainPalier: int = 0
 
 var refPool: Array[RefSO] = []
 var historiqueRef: Array[RefSO] = []
@@ -108,7 +110,7 @@ func _ready() -> void:
 	
 	moneyDisplayer.show()
 	_update_money_ui()
-	_change_state(State.PALIER)
+	_change_state(State.SHOP)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -122,16 +124,29 @@ func _change_state(new_state: State) -> void:
 	changementDePhase.emit(gamestate)
 	
 	match gamestate:
+		State.SHOP:
+			_update_money_ui()
+			fermerScene()
+			_set_choice_buttons_visible(false)
+			boutique.show()
+			
 		State.PALIER:
 			_update_money_ui()
 			fermerScene()
 			boutique.hide()
-			_set_choice_buttons_visible(true)
 			
 			choices = choiceTag()
-			choiceButton1.text = choices[0]
-			choiceButton2.text = choices[1]
-			choiceButton3.text = choices[2]
+			if choices.is_empty():
+				_change_state(State.PREP_QUESTION)
+				return
+			
+			var buttons: Array[Button] = [choiceButton1, choiceButton2, choiceButton3]
+			for i in range(buttons.size()):
+				if i < choices.size():
+					buttons[i].text = choices[i]
+					buttons[i].show()
+				else:
+					buttons[i].hide()
 			choiceButton1.grab_focus()
 			
 		State.PREP_QUESTION:
@@ -145,12 +160,6 @@ func _change_state(new_state: State) -> void:
 			else:
 				_change_state(State.PALIER)
 				
-		State.CLEAR:
-			fermerScene()
-			Money += 10
-			_update_money_ui()
-			boutique.show()
-			
 		State.VICTORY:
 			_update_money_ui()
 			fermerScene()
@@ -160,15 +169,22 @@ func _change_state(new_state: State) -> void:
 				get_tree().change_scene_to_packed(victoryScene)
 			
 		State.GAME_OVER:
+			_update_money_ui()
 			fermerScene()
+			boutique.hide()
 			gameOver.emit()
 			get_tree().change_scene_to_packed(GAME_OVER_SCENE)
 
 
+func _demarrer_palier() -> void:
+	questionsRequisesPalier = maxi(1, QUESTIONS_PAR_PALIER - reductionQuestionsProchainPalier)
+	reductionQuestionsProchainPalier = 0
+	_change_state(State.PALIER)
+
+
 func continuer_apres_boutique() -> void:
-	if gamestate == State.CLEAR:
-		Palier += 1
-		_change_state(State.PALIER)
+	if gamestate == State.SHOP:
+		_demarrer_palier()
 
 
 func choiceTag() -> Array[String]:
@@ -177,11 +193,8 @@ func choiceTag() -> Array[String]:
 		if tag not in activeTags:
 			disponibles.append(tag)
 	
-	if disponibles.size() < 3:
-		disponibles = tagList.duplicate()
-	
 	disponibles.shuffle()
-	return [disponibles[0], disponibles[1], disponibles[2]]
+	return disponibles.slice(0, 3)
 
 
 func _on_choice_button_pressed(index: int) -> void:
@@ -189,6 +202,35 @@ func _on_choice_button_pressed(index: int) -> void:
 	var chosen_tag := choices[index]
 	if chosen_tag not in activeTags:
 		activeTags.append(chosen_tag)
+		
+	#match chosen_tag:
+		#"Français":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Francais.wav"))
+		#"Comédie":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Comedie.wav"))
+		#"Américain":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Americain.wav"))
+		#"Action":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Action.wav"))
+		#"Thriller":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Thriller.wav"))
+		#"Sci-Fi":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Sci Fi.wav"))
+		#"Drame":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Drame.wav"))
+		#"Mondial":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Mondial.wav"))
+		#"Musical":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Musical.wav"))
+		#"Fantasy":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Fantasy.wav"))
+		#"Aventure":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Aventure.wav"))
+		#"Animation":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Animation.wav"))
+		#"Horreur":
+			#_play_sfx(preload("res://Assets/Audio/SFX/Horreur.wav"))
+			
 	endChoice.emit()
 	_change_state(State.PREP_QUESTION)
 
@@ -355,12 +397,12 @@ func _levenshtein_distance(s1: String, s2: String) -> int:
 
 func mauvaiseRep() -> void:
 	_play_sfx(nope)
-	presentateur.startDialog(pos.global_position, defaites[Question.diff])
+	presentateur.startDialog(pos.global_position, defaites[clampi(Question.diff, 0, defaites.size() - 1)])
 	Question = null
 	Vie -= 1
-	Etape = 0
 	performanceScore = clampf(performanceScore - 0.75, -1.5, 1.5)
 	textBar.text = ""
+	_update_money_ui()
 	
 	if Vie <= 0:
 		_change_state(State.GAME_OVER)
@@ -370,17 +412,19 @@ func mauvaiseRep() -> void:
 
 func bonneRep() -> void:
 	_play_sfx(yes)
-	presentateur.startDialog(pos.global_position, victoires[Question.diff])
+	presentateur.startDialog(pos.global_position, victoires[clampi(Question.diff, 0, victoires.size() - 1)])
 	Question = null
 	Etape += 1
 	performanceScore = clampf(performanceScore + 0.25, -1.5, 1.5)
 	
-	if Etape >= QUESTIONS_PAR_PALIER:
+	if Etape >= questionsRequisesPalier:
 		Etape = 0
 		if Palier >= MAX_PALIER:
 			_change_state(State.VICTORY)
 		else:
-			_change_state(State.CLEAR)
+			Palier += 1
+			Money += 10
+			_change_state(State.SHOP)
 	else:
 		_change_state(State.QUIZ)
 
@@ -404,7 +448,7 @@ func _set_choice_buttons_visible(is_visible: bool) -> void:
 
 
 func _update_money_ui() -> void:
-	moneyDisplayer.text = " " + str(Money) + " $ | "+ str(Vie) +" ❤️"
+	moneyDisplayer.text = " " + str(Money) + " $ | " + str(Vie) + " ❤️"
 
 
 func _play_sfx(stream: AudioStream) -> void:
@@ -413,15 +457,15 @@ func _play_sfx(stream: AudioStream) -> void:
 		sfx.play()
 
 
-
-
 func _on_skip_focus_entered() -> void:
 	_play_sfx(change)
 
 
 func _on_skip_pressed() -> void:
+	if gamestate != State.SHOP:
+		return
 	_play_sfx(nope)
-	_change_state(State.PALIER)
+	_demarrer_palier()
 
 
 func _on_vie_focus_entered() -> void:
@@ -429,22 +473,69 @@ func _on_vie_focus_entered() -> void:
 
 
 func _on_vie_pressed() -> void:
-	if Money >= 10 :
+	if gamestate != State.SHOP:
+		return
+	if Money >= 10:
 		_play_sfx(yes)
 		Money -= 10
 		Vie += 1
-		_change_state(State.PALIER)
 		_update_money_ui()
+		_demarrer_palier()
 	else:
 		_play_sfx(nope)
 
 
 func _on_roue_focus_entered() -> void:
 	_play_sfx(change)
-	
+
 
 func _on_roue_pressed() -> void:
-	pass # Replace with function body.
+	if gamestate != State.SHOP:
+		return
+	if Money < COUT_ROUE:
+		_play_sfx(nope)
+		return
+	
+	Money -= COUT_ROUE
+	var tirage := randi_range(0, 4)
+	
+	match tirage:
+		0:
+			Vie -= 1
+			_play_sfx(nope)
+			_update_money_ui()
+			roueResultat.emit("Bombe")
+			presentateur.startDialog(presentateur.BulleReponse, ["Attention aux malus ! Pas de chance !"])
+			if Vie <= 0:
+				_change_state(State.GAME_OVER)	
+		1:
+			Vie += 1
+			_play_sfx(yes)
+			_update_money_ui()
+			roueResultat.emit("Coeur")
+			presentateur.startDialog(presentateur.BulleReponse, ["Hop ! De quoi se requinquer !"])
+			
+		2:
+			Vie += 2
+			_play_sfx(yes)
+			_update_money_ui()
+			roueResultat.emit("DoubleCoeur")
+			presentateur.startDialog(presentateur.BulleReponse, ["Jouez au loto cocotte !"])
+			
+		3:
+			reductionQuestionsProchainPalier += 1
+			_play_sfx(yes)
+			_update_money_ui()
+			roueResultat.emit("MoinsUneQuestion")
+			presentateur.startDialog(presentateur.BulleReponse, ["Une question en moins !"])
+			
+		4:
+			Money += 10
+			_play_sfx(yes)
+			_update_money_ui()
+			roueResultat.emit("Plus10Dollars")
+			presentateur.startDialog(presentateur.BulleReponse, ["C'est le début de la richesse !"])
+			
 
 
 func _on_tree_exiting() -> void:

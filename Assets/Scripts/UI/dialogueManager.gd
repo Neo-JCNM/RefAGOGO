@@ -42,6 +42,8 @@ func _onTextBodyFinishedDisplaying():
 	await get_tree().create_timer(0.5).timeout
 	if isDialogActive and canAdvanceLine and _dialogStepId == stepId:
 		_advanceLine()
+	else:
+		anim.play("Waiting")
 
 
 func _unhandled_input(event):
@@ -51,12 +53,14 @@ func _unhandled_input(event):
 
 
 func _advanceLine():
+	var a = ["Talking_1", "Talking_2", "Talking_3"]
+	a.shuffle()		
 	canAdvanceLine = false
 	_dialogStepId += 1
 	if is_instance_valid(textBox):
 		textBox.queue_free()
 	if anim:
-		anim.play("Talking_1")
+		anim.play(a[0])
 		
 	currentLineIndex += 1
 	if currentLineIndex >= dialogLines.size():

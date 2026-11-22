@@ -23,7 +23,6 @@ DialogueManager="*uid://cqve4pkvd6kvq"
 
 window/size/mode=3
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [input]
 
@@ -42,3 +41,4 @@ Verif={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true
