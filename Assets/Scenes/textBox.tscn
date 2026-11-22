@@ -33,3 +33,6 @@ autowrap_trim_flags = 0
 text_direction = 1
 
 [node name="LetterDisplayTimer" type="Timer" parent="." unique_id=100626797]
+one_shot = true
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

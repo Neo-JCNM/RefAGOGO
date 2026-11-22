@@ -1,6 +1,6 @@
 extends Control
 
-@export var next = preload("res://Assets/Scenes/ModeSelection.tscn");
+@export var next = preload("res://Assets/Scenes/Jeu.tscn");
 @onready var presentateur = $YmgParlant
 
 @export var sfx : AudioStreamPlayer = null
