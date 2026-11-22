@@ -41,15 +41,15 @@ func _onTextBodyFinishedDisplaying():
 
 func _unhandled_input(event):
 	if isDialogActive and canAdvanceLine:
-		if (event is InputEventMouseButton and event.pressed) or event.is_action_pressed("ui_accept"):
-			textBox.queue_free()
-			if anim:
-				anim.play("Talking_1")
+		await get_tree().create_timer(1).timeout
+		textBox.queue_free()
+		if anim:
+			anim.play("Talking_1")
 			
-			currentLineIndex += 1
-			if currentLineIndex >= dialogLines.size():
-				isDialogActive = false
-				currentLineIndex = 0
-				return
+		currentLineIndex += 1
+		if currentLineIndex >= dialogLines.size():
+			isDialogActive = false
+			currentLineIndex = 0
+			return
 				
-			_showTextBox()
+		_showTextBox()
