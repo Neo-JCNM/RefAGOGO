@@ -139,6 +139,7 @@ autoplay = true
 max_polyphony = 2
 parameters/looping = false
 
+[connection signal="tree_exiting" from="." to="YmgParlant" method="_on_main_menu_tree_exiting"]
 [connection signal="button_down" from="Entries/Start/StartBtn" to="." method="_on_start_btn_button_down"]
 [connection signal="focus_entered" from="Entries/Start/StartBtn" to="." method="_on_start_btn_focus_entered"]
 [connection signal="button_down" from="Entries/Quit/QuitBtn" to="." method="_on_quit_btn_button_down"]
