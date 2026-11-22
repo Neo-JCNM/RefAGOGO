@@ -119,6 +119,7 @@ offset_top = 40.0
 offset_right = 655.0
 offset_bottom = 472.0
 scale = Vector2(1.2406573, 1)
+expand = true
 
 [node name="Text Holder" type="Button" parent="Control" unique_id=1543617570]
 layout_mode = 0

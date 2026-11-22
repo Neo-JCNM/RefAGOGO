@@ -6,6 +6,7 @@ extends Node
 
 var dialogLines : Array[String] = []
 var currentLineIndex = 0
+var _dialogStepId : int = 0
 
 var textBox
 var textBoxPosition : Vector2
@@ -37,22 +38,34 @@ func _showTextBox():
 
 func _onTextBodyFinishedDisplaying():
 	canAdvanceLine = true
-	
+	var stepId = _dialogStepId
+	await get_tree().create_timer(0.5).timeout
+	if isDialogActive and canAdvanceLine and _dialogStepId == stepId:
+		_advanceLine()
+
 
 func _unhandled_input(event):
 	if isDialogActive and canAdvanceLine:
 		if (event is InputEventMouseButton and event.pressed) or event.is_action_pressed("ui_accept"):
-			textBox.queue_free()
-			if anim:
-				anim.play("Talking_1")
-				
-			currentLineIndex += 1
-			if currentLineIndex >= dialogLines.size():
-				isDialogActive = false
-				currentLineIndex = 0
-				return
-					
-			_showTextBox()
+			_advanceLine()
+
+
+func _advanceLine():
+	canAdvanceLine = false
+	_dialogStepId += 1
+	if is_instance_valid(textBox):
+		textBox.queue_free()
+	if anim:
+		anim.play("Talking_1")
+		
+	currentLineIndex += 1
+	if currentLineIndex >= dialogLines.size():
+		isDialogActive = false
+		currentLineIndex = 0
+		anim.stop()
+		return
+		
+	_showTextBox()
 
 func stopDialog() -> void:
 	if is_instance_valid(textBox):
@@ -61,6 +74,7 @@ func stopDialog() -> void:
 	isDialogActive = false
 	canAdvanceLine = false
 	currentLineIndex = 0
+	anim.stop()
 
 
 func _on_main_menu_tree_exiting() -> void:
