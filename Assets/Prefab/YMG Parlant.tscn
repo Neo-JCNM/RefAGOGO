@@ -311,3 +311,7 @@ sprite_frames = SubResource("SpriteFrames_wpwwm")
 animation = &"Talking_1"
 
 [node name="TextBox" parent="." unique_id=189817471 instance=ExtResource("7_c3j4u")]
+visible = false
+
+[node name="PositionBulle" type="Marker2D" parent="." unique_id=199091504]
+position = Vector2(177, -245)
