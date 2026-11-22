@@ -58,7 +58,7 @@ const DIFF_WEIGHTS_BY_PALIER: Dictionary = {
 @export var boutique: Control = null
 
 @onready var presentateur = $YmgParlant
-@onready var pos = $YmgParlant/PositionBulle
+@onready var pos = $YmgParlant/BulleReponse
 
 #region dialogues
 var victoires : Array = [
@@ -70,7 +70,7 @@ var victoires : Array = [
 	["Mes félicitations, tu as surpassé toutes mes attentes !"]
 ]
 
-var mauvRep: Array = [
+var defaites: Array = [
 	["..."],
 	["Allooooo ! Y a quelqu'un au bout du fil ?"],
 	["Quoi ?? Tout le monde l'avait celle-la !"],
@@ -355,6 +355,7 @@ func _levenshtein_distance(s1: String, s2: String) -> int:
 
 func mauvaiseRep() -> void:
 	_play_sfx(nope)
+	presentateur.startDialog(pos.global_position, defaites[Question.diff])
 	Question = null
 	Vie -= 1
 	Etape = 0
@@ -369,6 +370,7 @@ func mauvaiseRep() -> void:
 
 func bonneRep() -> void:
 	_play_sfx(yes)
+	presentateur.startDialog(pos.global_position, victoires[Question.diff])
 	Question = null
 	Etape += 1
 	performanceScore = clampf(performanceScore + 0.25, -1.5, 1.5)
@@ -443,3 +445,7 @@ func _on_roue_focus_entered() -> void:
 
 func _on_roue_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_tree_exiting() -> void:
+	presentateur.stopDialog()

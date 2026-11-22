@@ -23,7 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kbq3s")
-tagList = null
 victoryScene = ExtResource("2_im0i1")
 shopBg = ExtResource("2_u6fw8")
 bgContainer = NodePath("Bg")
@@ -46,8 +45,8 @@ moneyDisplayer = NodePath("Money")
 boutique = NodePath("Shop")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=1188814431]
-position = Vector2(576.5, 333)
-scale = Vector2(0.6088542, 0.62407404)
+position = Vector2(576.5, 372.50003)
+scale = Vector2(0.6088542, 0.69722223)
 texture = ExtResource("2_u6fw8")
 
 [node name="Button1" type="Button" parent="." unique_id=1340554337]
@@ -228,12 +227,16 @@ icon = ExtResource("10_im0i1")
 flat = true
 
 [node name="YmgParlant" parent="." unique_id=2026341451 instance=ExtResource("12_xm7lk")]
-position = Vector2(929, 542)
+position = Vector2(894, 592)
 scale = Vector2(0.5, 0.5)
+
+[node name="BulleReponse" type="Marker2D" parent="YmgParlant" unique_id=2030330605]
+position = Vector2(-978, 258)
 
 [connection signal="changementDePhase" from="." to="." method="_on_changement_de_phase"]
 [connection signal="endChoice" from="." to="." method="_on_end_choice"]
 [connection signal="gameOver" from="." to="." method="_on_game_over"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="focus_entered" from="Button1" to="." method="_on_button_1_focus_entered"]
 [connection signal="pressed" from="Button1" to="." method="_on_button_1_pressed"]
 [connection signal="focus_entered" from="Button2" to="." method="_on_button_2_focus_entered"]

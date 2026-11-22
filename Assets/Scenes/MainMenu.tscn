@@ -35,8 +35,8 @@ loop = ExtResource("6_d6kuf")
 metadata/_edit_horizontal_guides_ = [130.0]
 
 [node name="BackgroundMenu" type="Sprite2D" parent="." unique_id=686120330]
-position = Vector2(582.5, 321)
-scale = Vector2(0.6255209, 0.6166667)
+position = Vector2(582.5, 372.5)
+scale = Vector2(0.6255209, 0.712037)
 texture = ExtResource("2_47kk4")
 
 [node name="Fond" type="TextureRect" parent="." unique_id=1302967708]
@@ -126,7 +126,7 @@ position = Vector2(335, 116)
 texture = ExtResource("6_ho3wo")
 
 [node name="YmgParlant" parent="." unique_id=2026341451 instance=ExtResource("7_47kk4")]
-position = Vector2(112, 475.99997)
+position = Vector2(112, 542)
 scale = Vector2(0.7, 0.7)
 
 [node name="YMG" type="AudioStreamPlayer" parent="." unique_id=1860314547]

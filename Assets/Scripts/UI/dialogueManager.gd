@@ -4,7 +4,7 @@ extends Node
 @onready var textBoxScene = preload("res://Assets/Scenes/textBox.tscn")
 @onready var anim = get_node_or_null("Sprite")
 
-var dialogLines : Array[String] = []
+var dialogLines : Array = []
 var currentLineIndex = 0
 var _dialogStepId : int = 0
 
@@ -14,7 +14,7 @@ var textBoxPosition : Vector2
 var isDialogActive = false
 var canAdvanceLine = false
 
-func startDialog(position : Vector2, lines: Array[String]):
+func startDialog(position : Vector2, lines: Array):
 	if isDialogActive:
 		return
 	
