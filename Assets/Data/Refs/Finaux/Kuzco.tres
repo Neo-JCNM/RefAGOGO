@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://ddysjsqe5ew2e"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_rcjwy"]
+[ext_resource type="VideoStream" uid="uid://bdvkv08wdxij4" path="res://Assets/Ressources/Video/Cest parti - Kuzco.ogv" id="2_rcjwy"]
+
+[resource]
+script = ExtResource("1_rcjwy")
+isVideo = true
+video = ExtResource("2_rcjwy")
+ref = "Kuzco"
+tag1 = "Aventure"
+tag2 = "Animation"
+diff = 1
+metadata/_custom_type_script = "uid://u51bq241skvb"
