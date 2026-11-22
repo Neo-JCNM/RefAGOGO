@@ -53,3 +53,15 @@ func _unhandled_input(event):
 				return
 				
 			_showTextBox()
+
+func stopDialog() -> void:
+	if is_instance_valid(textBox):
+		textBox.queue_free()
+	textBox = null
+	isDialogActive = false
+	canAdvanceLine = false
+	currentLineIndex = 0
+
+
+func _on_main_menu_tree_exiting() -> void:
+	stopDialog()
