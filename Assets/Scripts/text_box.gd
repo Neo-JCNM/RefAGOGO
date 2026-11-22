@@ -45,3 +45,14 @@ func _displayLetter():
 		finishedDisplaying.emit()
 		return 
 		
+	match text[letterIndex]:
+		"!",".",",","?":
+			timer.start(punctuationTime)
+		" ":
+			timer.start(spaceTime)
+		_:
+			timer.start(letterTime)
+
+
+func _on_letter_display_timer_timeout() -> void:
+	_displayLetter()
