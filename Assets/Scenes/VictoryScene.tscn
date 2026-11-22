@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bchifs6ufd4b7"]
+
+[ext_resource type="Script" uid="uid://di5q5bj3bs0yp" path="res://Assets/Scenes/game_over.gd" id="1_u2w3s"]
+[ext_resource type="Texture2D" uid="uid://cbdo1o07wo0b6" path="res://Assets/Graphics/UI Elements/BackgroundMenu.png" id="2_4b67m"]
+[ext_resource type="FontFile" uid="uid://dtygypbystsrb" path="res://Assets/Fonts/tendang/Tendang.otf" id="3_y54ue"]
+
+[node name="Node2D" type="Node2D" unique_id=234499576]
+script = ExtResource("1_u2w3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961306429]
+position = Vector2(618.375, 345.5)
+scale = Vector2(0.7162761, 0.6694445)
+texture = ExtResource("2_4b67m")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=564133327]
+offset_left = 187.0
+offset_top = 118.0
+offset_right = 799.31067
+offset_bottom = 423.00003
+rotation = -0.039341066
+theme_override_fonts/normal_font = ExtResource("3_y54ue")
+theme_override_font_sizes/normal_font_size = 120
+text = "Victoire !"
+scroll_active = false
+
+[node name="Button" type="Button" parent="." unique_id=1774912239]
+offset_left = 800.0
+offset_top = 523.0
+offset_right = 1128.0
+offset_bottom = 614.0
+rotation = 0.047382034
+theme_override_fonts/font = ExtResource("3_y54ue")
+theme_override_font_sizes/font_size = 50
+text = "Main Menu →"
+flat = true
+
+[node name="sfx" type="AudioStreamPlayer" parent="." unique_id=364723906]
+
+[node name="bgm" type="AudioStreamPlayer" parent="." unique_id=297413390]
+
+[node name="ymg" type="AudioStreamPlayer" parent="." unique_id=749130188]
+
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

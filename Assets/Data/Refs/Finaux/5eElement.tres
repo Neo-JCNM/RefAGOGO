@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://b23jwt45x37ih"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_lo0og"]
+[ext_resource type="VideoStream" uid="uid://dgcqw63a2wsn0" path="res://Assets/Ressources/Video/5e-élément.ogv" id="2_lo0og"]
+
+[resource]
+script = ExtResource("1_lo0og")
+isVideo = true
+video = ExtResource("2_lo0og")
+ref = "5e Element"
+tag1 = "Action"
+tag2 = "Sci-Fi"
+diff = 3
+metadata/_custom_type_script = "uid://u51bq241skvb"

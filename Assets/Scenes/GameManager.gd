@@ -22,11 +22,11 @@ const DIFF_WEIGHTS_BY_PALIER: Dictionary = {
 	5: [2.0, 5.0, 13.0, 28.0, 30.0, 22.0]
 }
 
-@export var tagList: Array[String] = ["Français", "Culte", "Horreur", "Action", "Américain", "Fantasy", "Drame"]
+@export var tagList: Array[String] = ["Français", "Comédie", "Horreur", "Action", "Américain", "Fantasy", "Drame", "Thriller", "Sci-Fi"]
 @export var victoryScene: PackedScene = null
 
 @export var shopBg: Texture2D = null
-@export var bgContainer: TextureRect = null
+@export var bgContainer: Sprite2D = null
 
 @export_group("Boutons")
 @export var choiceButton1: Button = null
@@ -100,6 +100,7 @@ func _change_state(new_state: State) -> void:
 	
 	match gamestate:
 		State.PALIER:
+			_update_money_ui()
 			fermerScene()
 			boutique.hide()
 			_set_choice_buttons_visible(true)
@@ -115,6 +116,7 @@ func _change_state(new_state: State) -> void:
 			get_refs()
 			
 		State.QUIZ:
+			_update_money_ui()
 			if chooseQuestion():
 				mettreEnScene()
 			else:
@@ -127,6 +129,7 @@ func _change_state(new_state: State) -> void:
 			boutique.show()
 			
 		State.VICTORY:
+			_update_money_ui()
 			fermerScene()
 			boutique.hide()
 			victory.emit()
@@ -376,10 +379,44 @@ func _set_choice_buttons_visible(is_visible: bool) -> void:
 
 
 func _update_money_ui() -> void:
-	moneyDisplayer.text = " " + str(Money) + " $"
+	moneyDisplayer.text = " " + str(Money) + " $ | "+ str(Vie) +" ❤️"
 
 
 func _play_sfx(stream: AudioStream) -> void:
 	if sfx != null and stream != null:
 		sfx.stream = stream
 		sfx.play()
+
+
+
+
+func _on_skip_focus_entered() -> void:
+	_play_sfx(change)
+
+
+func _on_skip_pressed() -> void:
+	_play_sfx(nope)
+	_change_state(State.PALIER)
+
+
+func _on_vie_focus_entered() -> void:
+	_play_sfx(change)
+
+
+func _on_vie_pressed() -> void:
+	if Money >= 10 :
+		_play_sfx(yes)
+		Money -= 10
+		Vie += 1
+		_change_state(State.PALIER)
+		_update_money_ui()
+	else:
+		_play_sfx(nope)
+
+
+func _on_roue_focus_entered() -> void:
+	_play_sfx(change)
+	
+
+func _on_roue_pressed() -> void:
+	pass # Replace with function body.

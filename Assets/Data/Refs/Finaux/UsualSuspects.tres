@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://ds0m51mhyjm4p"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_odsbt"]
+[ext_resource type="VideoStream" uid="uid://cy7816un7lsqh" path="res://Assets/Ressources/Video/Usual-Suspects.ogv" id="2_au8j3"]
+
+[resource]
+script = ExtResource("1_odsbt")
+isVideo = true
+video = ExtResource("2_au8j3")
+ref = "Usual Suspets"
+tag1 = "Amércain"
+tag2 = "Thriller"
+diff = 4
+metadata/_custom_type_script = "uid://u51bq241skvb"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://4rxp6tibgnt5"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_fe3dg"]
+[ext_resource type="VideoStream" uid="uid://bmca60sb3m4sp" path="res://Assets/Ressources/Video/RainMan.ogv" id="2_fe3dg"]
+
+[resource]
+script = ExtResource("1_fe3dg")
+isVideo = true
+video = ExtResource("2_fe3dg")
+ref = "Rain Man"
+tag1 = "Comédie"
+tag2 = "Drame"
+diff = 5
+metadata/_custom_type_script = "uid://u51bq241skvb"

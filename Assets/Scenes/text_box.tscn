@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bbio48xk5d45m"]
+[gd_scene format=3 uid="uid://dokag0fplkq5a"]
 
 [ext_resource type="Script" uid="uid://c0fw5ycfdbpka" path="res://Assets/Scripts/text_box.gd" id="1_d0rgj"]
 [ext_resource type="Texture2D" uid="uid://73wnkd6ligel" path="res://Assets/Graphics/UI Elements/textbox.png" id="2_5tto5"]

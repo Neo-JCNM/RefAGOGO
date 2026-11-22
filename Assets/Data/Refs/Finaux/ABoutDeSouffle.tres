@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://beg7lupdc5rkc"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_4yuyw"]
+[ext_resource type="VideoStream" uid="uid://dqwqq2brbey3q" path="res://Assets/Ressources/Video/A-bout-de-souffle.ogv" id="2_55tyb"]
+
+[resource]
+script = ExtResource("1_4yuyw")
+isVideo = true
+video = ExtResource("2_55tyb")
+ref = "A bout de souffle"
+tag1 = "Français"
+tag2 = "Thriller"
+diff = 4
+metadata/_custom_type_script = "uid://u51bq241skvb"

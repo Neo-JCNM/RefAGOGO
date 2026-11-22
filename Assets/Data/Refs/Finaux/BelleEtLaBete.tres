@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RefSO" format=3 uid="uid://u2kxm77duugc"]
+
+[ext_resource type="Script" uid="uid://u51bq241skvb" path="res://Assets/Scripts/ScriptableObjects/ReferenceSO.gd" id="1_v7aey"]
+[ext_resource type="VideoStream" uid="uid://lsc7t72tlbdn" path="res://Assets/Ressources/Video/La-belle-et-la-Bête.ogv" id="2_mu4ju"]
+
+[resource]
+script = ExtResource("1_v7aey")
+isVideo = true
+video = ExtResource("2_mu4ju")
+ref = "La Belle et la Bête"
+tag1 = "Américain"
+tag2 = "Animation"
+diff = 1
+metadata/_custom_type_script = "uid://u51bq241skvb"
