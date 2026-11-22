@@ -57,6 +57,29 @@ const DIFF_WEIGHTS_BY_PALIER: Dictionary = {
 @export var moneyDisplayer: RichTextLabel = null
 @export var boutique: Control = null
 
+@onready var presentateur = $YmgParlant
+@onready var pos = $YmgParlant/PositionBulle
+
+#region dialogues
+var victoires : Array = [
+	["Bien joué, même si un nouveau-né l'aurait eu aussi !"],
+	["Bravo, tu es aussi fort que monsieur-tout-le-monde !"],
+	["Pas mal, tu es plus cultivé que tu en as l'air !"],
+	["Ok, tu te débrouilles mieux que ce que j'imaginais !"],
+	["Chapeau, beaucoup se sont plantés ici !"],
+	["Mes félicitations, tu as surpassé toutes mes attentes !"]
+]
+
+var mauvRep: Array = [
+	["..."],
+	["Allooooo ! Y a quelqu'un au bout du fil ?"],
+	["Quoi ?? Tout le monde l'avait celle-la !"],
+	["Fais un effort, c'était simple pourtant..."],
+	["J'en attendais un peu mieux de toi"],
+	["Logique, tu ne fais pas partie de l'élite..."]
+]
+#endregion
+
 var gamestate: State = State.PALIER
 var activeTags: Array[String] = []
 var choices: Array[String] = []
